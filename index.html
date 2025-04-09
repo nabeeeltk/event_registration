@@ -12,11 +12,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
     }
+
     .container {
-      width: 40%;
+      width: 100%;
+      max-width: 500px;
       background: #2e7d32;
       padding: 30px;
       border-radius: 10px;
@@ -24,14 +27,17 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       text-align: center;
     }
+
     .form-group {
       margin-bottom: 15px;
       text-align: left;
     }
+
     label {
       font-weight: bold;
       display: block;
     }
+
     input, select, button {
       width: 100%;
       padding: 10px;
@@ -40,10 +46,12 @@
       border: none;
       font-size: 16px;
     }
+
     input, select {
       background: #fff;
       color: #333;
     }
+
     button {
       background: #1b5e20;
       color: white;
@@ -51,14 +59,18 @@
       cursor: pointer;
       transition: background 0.3s;
     }
+
     button:hover {
       background: #66bb6a;
     }
+
     .popup {
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
+      width: 90%;
+      max-width: 400px;
       transform: translate(-50%, -50%);
       background: white;
       padding: 20px;
@@ -66,12 +78,14 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       text-align: center;
     }
+
     .popup button {
       width: auto;
       background: #2e7d32;
       padding: 8px 15px;
       font-size: 16px;
     }
+
     .delegate-card {
       display: none;
       background: white;
@@ -80,13 +94,16 @@
       text-align: center;
       margin-top: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      position: relative;
+      width: 100%;
+      max-width: 500px;
     }
+
     .delegate-card img {
       max-width: 100px;
       margin: 10px auto;
       display: block;
     }
+
     .download-btn {
       margin-top: 10px;
       padding: 10px;
@@ -97,11 +114,29 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      input, select, button {
+        font-size: 16px;
+      }
+
+      .delegate-card, .popup {
+        padding: 15px;
+      }
+
+      h2, h3 {
+        font-size: 22px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>msf Delegate Meet Registration</h2>
+    <h2>MSF Delegate Meet Registration</h2>
     <form id="eventForm">
       <div class="form-group">
         <label for="name">Name *</label>
@@ -152,7 +187,6 @@
   </div>
 
   <script>
-    // Fetch units
     fetch("https://mdshahilak.pythonanywhere.com/api/main/units/")
       .then(response => response.json())
       .then(units => {
@@ -165,7 +199,6 @@
         });
       });
 
-    // Fetch designations
     fetch("https://mdshahilak.pythonanywhere.com/api/main/designations/")
       .then(response => response.json())
       .then(designations => {
@@ -211,7 +244,6 @@
         return response.json();
       })
       .then(data => {
-        // Assume backend returns fields: name, unit, designation, photo, qr
         document.getElementById('successPopup').style.display = 'block';
 
         document.getElementById('cardName').textContent = data.name;
