@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Event Registration</title>
+  <title>MSF Delegate Card</title>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <style>
     body {
@@ -11,10 +11,10 @@
       background-color: #e8f5e9;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       min-height: 100vh;
-      margin: 0;
       padding: 20px;
+      flex-direction: column;
     }
 
     .container {
@@ -26,6 +26,7 @@
       color: white;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       text-align: center;
+      margin-bottom: 30px;
     }
 
     .form-group {
@@ -64,48 +65,71 @@
       background: #66bb6a;
     }
 
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 90%;
-      max-width: 400px;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
-    }
-
-    .popup button {
-      width: auto;
-      background: #2e7d32;
-      padding: 8px 15px;
-      font-size: 16px;
-    }
-
     .delegate-card {
-      display: none;
+      position: relative;
       background: white;
       padding: 20px;
       border-radius: 10px;
       text-align: center;
-      margin-top: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       width: 100%;
-      max-width: 500px;
+      max-width: 400px;
+      margin: auto;
+      display: none;
     }
 
-    .delegate-card img {
-      max-width: 100px;
-      margin: 10px auto;
-      display: block;
+    .delegate-template {
+      position: relative;
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    .delegate-template img.bg {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .delegate-template img.photo {
+      position: absolute;
+      top: 210px;
+      left: 85px;
+      width: 130px;
+      height: 160px;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+
+    .delegate-template p.name {
+      position: absolute;
+      top: 390px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      color: black;
+    }
+
+    .delegate-template p.meta {
+      position: absolute;
+      top: 415px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: black;
+    }
+
+    .delegate-template img.qr {
+      position: absolute;
+      bottom: 30px;
+      left: calc(50% - 50px);
+      width: 100px;
+      height: 100px;
     }
 
     .download-btn {
-      margin-top: 10px;
+      margin-top: 15px;
       padding: 10px;
       font-size: 16px;
       background: #2e7d32;
@@ -119,24 +143,16 @@
       .container {
         padding: 20px;
       }
-
       input, select, button {
         font-size: 16px;
-      }
-
-      .delegate-card, .popup {
-        padding: 15px;
-      }
-
-      h2, h3 {
-        font-size: 22px;
       }
     }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <h2>MSF Delegate Meet Registration</h2>
+    <h2>msf Delegate Meet Registration</h2>
     <form id="eventForm">
       <div class="form-group">
         <label for="name">Name *</label>
@@ -171,22 +187,19 @@
     </form>
   </div>
 
-  <div class="popup" id="successPopup">
-    <h3>Registration Successful!</h3>
-    <button onclick="closePopup()">Close</button>
-  </div>
-
   <div class="delegate-card" id="delegateCard">
-    <h3>Delegate Card</h3>
-    <img id="cardPhoto" src="" alt="Photo">
-    <p><strong>Name:</strong> <span id="cardName"></span></p>
-    <p><strong>Unit:</strong> <span id="cardUnit"></span></p>
-    <p><strong>Designation:</strong> <span id="cardDesignation"></span></p>
-    <img id="cardQR" src="" alt="QR Code">
+    <div class="delegate-template">
+      <img src="delegate-template.jpg" class="bg" alt="Card Template">
+      <img id="cardPhoto" class="photo" src="" alt="User Photo">
+      <p class="name" id="cardName"></p>
+      <p class="meta"><span id="cardDesignation"></span> | <span id="cardUnit"></span></p>
+      <img id="cardQR" class="qr" src="" alt="QR Code">
+    </div>
     <button class="download-btn" onclick="downloadDelegateCard()">Download Delegate Card</button>
   </div>
 
   <script>
+    // Fetch units
     fetch("https://mdshahilak.pythonanywhere.com/api/main/units/")
       .then(response => response.json())
       .then(units => {
@@ -199,6 +212,7 @@
         });
       });
 
+    // Fetch designations
     fetch("https://mdshahilak.pythonanywhere.com/api/main/designations/")
       .then(response => response.json())
       .then(designations => {
@@ -244,14 +258,11 @@
         return response.json();
       })
       .then(data => {
-        document.getElementById('successPopup').style.display = 'block';
-
         document.getElementById('cardName').textContent = data.name;
         document.getElementById('cardUnit').textContent = data.unit;
         document.getElementById('cardDesignation').textContent = data.designation;
         document.getElementById('cardPhoto').src = data.photo;
         document.getElementById('cardQR').src = data.qr;
-
         document.getElementById('delegateCard').style.display = 'block';
       })
       .catch(error => {
@@ -260,14 +271,9 @@
       });
     }
 
-    function closePopup() {
-      document.getElementById('successPopup').style.display = 'none';
-      document.getElementById('eventForm').reset();
-    }
-
     function downloadDelegateCard() {
-      html2canvas(document.getElementById("delegateCard")).then(canvas => {
-        let link = document.createElement("a");
+      html2canvas(document.querySelector(".delegate-template")).then(canvas => {
+        const link = document.createElement("a");
         link.href = canvas.toDataURL("image/png");
         link.download = "Delegate_Card.png";
         link.click();
