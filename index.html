@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>msf Pulpatta Panchayath</title>
+  <title>MSF Pulpatta Panchayath</title>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <style>
     body {
@@ -67,65 +67,44 @@
 
     .delegate-card {
       position: relative;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      width: 100%;
-      max-width: 400px;
-      margin: auto;
+      width: 600px;
+      height: 100vh;
+      background-image: url('https://mallisseri.com/assets/img/delegate.svg');
+      background-size: cover;
+      background-repeat: no-repeat;
       display: none;
+      margin: auto;
     }
 
-    .delegate-template {
-      position: relative;
-      width: 300px;
-      margin: 0 auto;
-    }
-
-    .delegate-template img.bg {
+    .card-info {
       width: 100%;
-      border-radius: 10px;
+      height: 100%;
+      position: relative;
     }
 
-    .delegate-template img.photo {
+    .photo {
+      width: 150px;
+      height: 150px;
       position: absolute;
-      top: 210px;
-      left: 85px;
-      width: 130px;
-      height: 160px;
+      top: 392px;
+      left: 100px;
+      background-color: #ccc;
+      overflow: hidden;
       border-radius: 5px;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
-    .delegate-template p.name {
+    .info {
       position: absolute;
-      top: 390px;
-      left: 0;
-      width: 100%;
+      bottom: 115px;
+      left: 100px;
       text-align: center;
-      font-weight: bold;
-      font-size: 16px;
       color: black;
-    }
-
-    .delegate-template p.meta {
-      position: absolute;
-      top: 415px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-      color: black;
-    }
-
-    .delegate-template img.qr {
-      position: absolute;
-      bottom: 30px;
-      left: calc(50% - 50px);
-      width: 100px;
-      height: 100px;
     }
 
     .download-btn {
@@ -139,12 +118,25 @@
       cursor: pointer;
     }
 
-    @media screen and (max-width: 768px) {
-      .container {
-        padding: 20px;
+    @media screen and (max-width: 640px) {
+      .delegate-card {
+        width: 100%;
+        height: auto;
+        background-size: contain;
+        background-position: center;
       }
-      input, select, button {
-        font-size: 16px;
+
+      .photo {
+        top: 60%;
+        left: 15%;
+        width: 100px;
+        height: 100px;
+      }
+
+      .info {
+        bottom: 30px;
+        left: 15%;
+        font-size: 14px;
       }
     }
   </style>
@@ -188,15 +180,19 @@
   </div>
 
   <div class="delegate-card" id="delegateCard">
-    <div class="delegate-template">
-      <img src="delegate-template.jpg" class="bg" alt="Card Template">
-      <img id="cardPhoto" class="photo" src="" alt="User Photo">
-      <p class="name" id="cardName"></p>
-      <p class="meta"><span id="cardDesignation"></span> | <span id="cardUnit"></span></p>
-      <img id="cardQR" class="qr" src="" alt="QR Code">
+    <div class="card-info">
+      <div class="photo">
+        <img id="cardPhoto" src="" alt="User Photo">
+      </div>
+      <div class="info">
+        <p id="cardName">Name</p>
+        <p id="cardPhone">Phone</p>
+        <p id="cardUnit">Unit</p>
+      </div>
     </div>
-    <button class="download-btn" onclick="downloadDelegateCard()">Download Delegate Card</button>
   </div>
+
+  <button id="downloadBtn" class="download-btn" onclick="downloadDelegateCard()" style="display: none;">Download Delegate Card</button>
 
   <script>
     // Fetch units
@@ -259,11 +255,23 @@
       })
       .then(data => {
         document.getElementById('cardName').textContent = data.name;
+        document.getElementById('cardPhone').textContent = "Mobile: " + data.phone;
         document.getElementById('cardUnit').textContent = data.unit;
-        document.getElementById('cardDesignation').textContent = data.designation;
-        document.getElementById('cardPhoto').src = data.photo;
-        document.getElementById('cardQR').src = data.qr;
+
+        // Convert image to base64 to avoid CORS issue
+        fetch(data.photo)
+          .then(response => response.blob())
+          .then(blob => {
+            const reader = new FileReader();
+            reader.onloadend = function () {
+              document.getElementById('cardPhoto').src = reader.result;
+            };
+            reader.readAsDataURL(blob);
+          });
+
         document.getElementById('delegateCard').style.display = 'block';
+        document.getElementById('downloadBtn').style.display = 'inline-block';
+        window.scrollTo({ top: document.getElementById('delegateCard').offsetTop, behavior: 'smooth' });
       })
       .catch(error => {
         console.error("Error:", error);
@@ -272,7 +280,9 @@
     }
 
     function downloadDelegateCard() {
-      html2canvas(document.querySelector(".delegate-template")).then(canvas => {
+      html2canvas(document.querySelector(".delegate-card"), {
+        useCORS: true
+      }).then(canvas => {
         const link = document.createElement("a");
         link.href = canvas.toDataURL("image/png");
         link.download = "Delegate_Card.png";
