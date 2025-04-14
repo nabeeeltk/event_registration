@@ -113,7 +113,7 @@ button:hover {
   position: relative;
   width: 600px;
   height: 100vh;
-  background-image: url('assets/delegate copy_batcheditor_fotor.jpg');
+  background-image: url("https://i.postimg.cc/sg4QfdyZ/delegate-copy-1.jpg"); ;
   background-size: cover;
   background-repeat: no-repeat;
   display: none;
@@ -128,10 +128,10 @@ button:hover {
 
 .photo {
   width: 150px;
-  height: 150px;
+  height: 180px;
   position: absolute;
-  top: 392px;
-  left: 100px;
+  top: 398px;
+  left: 120px;
   background-color: #ccc;
   overflow: hidden;
   border-radius: 5px;
@@ -145,7 +145,7 @@ button:hover {
 
 .info {
   position: absolute;
-  bottom: 115px;
+  bottom: 185px;
   left: 100px;
   text-align: center;
   color: black;

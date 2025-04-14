@@ -83,7 +83,9 @@ function registerEvent() {
 
 function downloadDelegateCard() {
   html2canvas(document.querySelector(".delegate-card"), {
-    useCORS: true
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: null
   }).then(canvas => {
     const link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
