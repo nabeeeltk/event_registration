@@ -10,15 +10,19 @@ body {
 .landing {
   width: 100%;
   height: 100vh;
-  background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+  background-image: url('https://i.postimg.cc/W18djKJ3/page-1-copy.jpg');
   background-size: cover;
   background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   color: white;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 50px; /* distance from bottom */
+  
+
 }
 
 .overlay {
@@ -35,12 +39,13 @@ body {
 .landing button {
   background: #66bb6a;
   color: white;
-  padding: 15px 25px;
+  padding: 15px 95px;
   font-size: 18px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s;
+
 }
 
 .landing button:hover {
@@ -163,46 +168,92 @@ button:hover {
 }
 
 /* Tablet View (641px–1024px) */
-@media screen and (min-width: 641px) and (max-width: 1024px) {
+@media screen and (max-width: 640px) {
   .landing h1 {
-    font-size: 28px;
+    font-size: 24px;
+    padding: 0 10px;
   }
 
   .landing button {
-    font-size: 16px;
-    padding: 12px 20px;
+    font-size: 14px;
+    padding: 10px 16px;
+    
+  }
+
+  .overlay {
+    padding: 30px 20px;
+  }
+
+  #registration {
+    padding: 30px 15px;
+    align-items: flex-start;
   }
 
   .container {
-    padding: 35px 25px;
-    max-width: 90%;
+    padding: 25px 20px;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 10px;
+  }
+
+  label {
+    font-size: 14px;
   }
 
   input,
-  select,
+  select {
+    padding: 10px;
+    font-size: 14px;
+  }
+
   button {
-    font-size: 16px;
     padding: 12px;
+    font-size: 16px;
   }
 
   .delegate-card {
-    width: 90%;
+    width: 100%;
     height: auto;
     background-size: contain;
     background-position: center;
   }
 
   .photo {
-    width: 120px;
+    position: absolute;
+    top: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
     height: 120px;
-    top: 55%;
-    left: 80px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .info {
-    bottom: 90px;
-    left: 80px;
-    font-size: 16px;
+    position: absolute;
+    top: 540px;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .info p {
+    margin: 4px 0;
+  }
+
+  .download-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+    margin-top: 10px;
   }
 }
 
@@ -211,6 +262,7 @@ button:hover {
   .landing h1 {
     font-size: 24px;
     padding: 0 10px;
+  
   }
 
   .landing button {
