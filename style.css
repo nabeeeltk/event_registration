@@ -131,7 +131,7 @@ button:hover {
   height: 180px;
   position: absolute;
   top: 398px;
-  left: 120px;
+  left: 110px;
   background-color: #ccc;
   overflow: hidden;
   border-radius: 5px;
@@ -145,8 +145,8 @@ button:hover {
 
 .info {
   position: absolute;
-  bottom: 185px;
-  left: 100px;
+  bottom: 175px;
+  left: 120px;
   text-align: center;
   color: black;
 }
