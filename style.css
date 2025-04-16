@@ -1,134 +1,233 @@
+/* General Reset and Base Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
 
-  .landing {
-    width: 100%;
-    height: 100vh;
-    background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    color: white;
-    text-align: center;
-  }
+/* Landing Section */
+.landing {
+  width: 100%;
+  height: 100vh;
+  background-image: url('https://i.postimg.cc/W18djKJ3/page-1-copy.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 50px; /* distance from bottom */
+  
 
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 50px;
-    border-radius: 15px;
-  }
+}
 
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 50px;
+  border-radius: 15px;
+}
+
+.landing h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.landing button {
+  background: #66bb6a;
+  color: white;
+  padding: 15px 95px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+
+}
+
+.landing button:hover {
+  background: #388e3c;
+}
+
+/* Registration Section */
+#registration {
+  background-color: #e8f5e9;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: #2e7d32;
+  padding: 40px 30px;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  background: #fff;
+  color: #333;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  background: #1b5e20;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #66bb6a;
+}
+
+/* Delegate Card */
+.delegate-card {
+  position: relative;
+  width: 600px;
+  height: 100vh;
+  background-image: url("https://i.postimg.cc/sg4QfdyZ/delegate-copy-1.jpg"); ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: none;
+  margin: auto;
+}
+
+.card-info {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.photo {
+  width: 150px;
+  height: 180px;
+  position: absolute;
+  top: 398px;
+  left: 110px;
+  background-color: #ccc;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  position: absolute;
+  bottom: 175px;
+  left: 120px;
+  text-align: center;
+  color: black;
+}
+
+.download-btn {
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 16px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Tablet View (641px–1024px) */
+@media screen and (max-width: 640px) {
   .landing h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
+    font-size: 24px;
+    padding: 0 10px;
   }
 
   .landing button {
-    background: #66bb6a;
-    color: white;
-    padding: 15px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
+    font-size: 14px;
+    padding: 10px 16px;
+    
   }
 
-  .landing button:hover {
-    background: #388e3c;
+  .overlay {
+    padding: 30px 20px;
   }
 
   #registration {
-    background-color: #e8f5e9;
-    display: flex;
-    justify-content: center;
+    padding: 30px 15px;
     align-items: flex-start;
-    min-height: 100vh;
-    padding: 20px;
-    flex-direction: column;
   }
 
   .container {
+    padding: 25px 20px;
     width: 100%;
-    max-width: 500px;
-    background: #2e7d32;
-    padding: 30px;
+    max-width: 100%;
+    box-shadow: none;
     border-radius: 10px;
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    margin: auto;
-  }
-
-  .form-group {
-    margin-bottom: 15px;
-    text-align: left;
   }
 
   label {
-    font-weight: bold;
-    display: block;
+    font-size: 14px;
   }
 
-  input, select, button {
-    width: 100%;
+  input,
+  select {
     padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: none;
-    font-size: 16px;
-  }
-
-  input, select {
-    background: #fff;
-    color: #333;
+    font-size: 14px;
   }
 
   button {
-    background: #1b5e20;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  button:hover {
-    background: #66bb6a;
+    padding: 12px;
+    font-size: 16px;
   }
 
   .delegate-card {
-    position: relative;
-    width: 600px;
-    height: 100vh;
-    background-image: url('assets/delegate copy_batcheditor_fotor.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: none;
-    margin: auto;
-  }
-
-  .card-info {
     width: 100%;
-    height: 100%;
-    position: relative;
+    height: auto;
+    background-size: contain;
+    background-position: center;
   }
 
   .photo {
-    width: 150px;
-    height: 150px;
     position: absolute;
-    top: 392px;
-    left: 100px;
-    background-color: #ccc;
-    overflow: hidden;
+    top: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 120px;
     border-radius: 5px;
+    overflow: hidden;
   }
 
   .photo img {
@@ -139,41 +238,93 @@ body {
 
   .info {
     position: absolute;
-    bottom: 115px;
-    left: 100px;
+    top: 540px;
+    width: 100%;
     text-align: center;
     color: black;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .info p {
+    margin: 4px 0;
   }
 
   .download-btn {
-    margin-top: 15px;
+    font-size: 14px;
+    padding: 8px 12px;
+    margin-top: 10px;
+  }
+}
+
+/* Mobile View (≤640px) */
+@media screen and (max-width: 640px) {
+  .landing h1 {
+    font-size: 24px;
+    padding: 0 10px;
+  
+  }
+
+  .landing button {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .overlay {
+    padding: 30px 20px;
+  }
+
+  #registration {
+    padding: 30px 15px;
+    align-items: flex-start;
+  }
+
+  .container {
+    padding: 25px 20px;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 10px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input,
+  select {
     padding: 10px;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 12px;
     font-size: 16px;
-    background: #2e7d32;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
   }
 
-  @media screen and (max-width: 640px) {
-    .delegate-card {
-      width: 100%;
-      height: auto;
-      background-size: contain;
-      background-position: center;
-    }
-
-    .photo {
-      top: 60%;
-      left: 15%;
-      width: 100px;
-      height: 100px;
-    }
-
-    .info {
-      bottom: 30px;
-      left: 15%;
-      font-size: 14px;
-    }
+  .delegate-card {
+    width: 100%;
+    height: auto;
+    background-size: contain;
+    background-position: center;
   }
+
+  .photo {
+    top: 60%;
+    left: 15%;
+    width: 100px;
+    height: 100px;
+  }
+
+  .info {
+    bottom: 30px;
+    left: 15%;
+    font-size: 12px;
+    width: 70%;
+  }
+
+  .download-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
