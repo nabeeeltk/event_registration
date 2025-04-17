@@ -7,10 +7,11 @@ body {
 }
 
 /* Landing Section */
+
 .landing {
   width: 100%;
   height: 100vh;
-  background-image: url('https://i.postimg.cc/W18djKJ3/page-1-copy.jpg');
+  background-image: url('https://i.postimg.cc/bNKV6kp0/msf.png');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -135,8 +136,8 @@ button:hover {
   width: 150px;
   height: 180px;
   position: absolute;
-  top: 398px;
-  left: 110px;
+  top: 465px;
+    left: 142px;
   background-color: #ccc;
   overflow: hidden;
   border-radius: 5px;

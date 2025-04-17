@@ -11,7 +11,7 @@
   <!-- Registration Section -->
   <section id="registration">
     <div class="container">
-      <h2>msf സമ്മേളന കാലം രജിസ്ട്രേഷൻ</h2>
+      <h2>msf സമ്മേളന "കാലം" രജിസ്ട്രേഷൻ</h2>
       <form id="eventForm">
         <div class="form-group">
           <label for="name">Name *</label>
@@ -40,8 +40,9 @@
         <div class="form-group">
           <label for="photo">Upload Photo</label>
           <input type="file" id="photo" accept="image/*">
+          <small id="photoError" style="color: red; display: none;"></small>
         </div>
-
+        
         <button type="button" onclick="registerEvent()">Submit</button>
       </form>
     </div>

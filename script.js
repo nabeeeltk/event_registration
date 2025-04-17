@@ -24,62 +24,74 @@ fetch("https://mdshahilak.pythonanywhere.com/api/main/designations/")
     });
   });
 
-function registerEvent() {
-  const name = document.getElementById('name').value;
-  const designation = document.getElementById('designation').value;
-  const unit = document.getElementById('unit').value;
-  const phone = document.getElementById('phone').value;
-  const photoInput = document.getElementById('photo');
-  const file = photoInput.files[0];
-
-  if (!name || !designation || !unit || !phone) {
-    alert("All fields except photo are required!");
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("name", name);
-  formData.append("designation", designation);
-  formData.append("unit", unit);
-  formData.append("phone", phone);
-  if (file) {
-    formData.append("photo", file, file.name);
-  }
-
-  fetch("https://mdshahilak.pythonanywhere.com/api/main/students/", {
-    method: "POST",
-    body: formData
-  })
-  .then(response => {
-    if (!response.ok) {
-      return response.json().then(err => { throw new Error(JSON.stringify(err)); });
+  function registerEvent() {
+    const name = document.getElementById('name').value.trim();
+    const designation = document.getElementById('designation').value;
+    const unit = document.getElementById('unit').value;
+    const phone = document.getElementById('phone').value.trim();
+    const photoInput = document.getElementById('photo');
+    const file = photoInput.files[0];
+    const photoError = document.getElementById('photoError');
+  
+    // Reset error message
+    photoError.style.display = 'none';
+    photoError.textContent = '';
+  
+    if (!name || !designation || !unit || !phone) {
+      alert("All fields except photo are required!");
+      return;
     }
-    return response.json();
-  })
-  .then(data => {
-    document.getElementById('cardName').textContent = data.name;
-    document.getElementById('cardPhone').textContent = "Mobile: " + data.phone;
-    document.getElementById('cardUnit').textContent = data.unit;
-
-    fetch(data.photo)
-      .then(response => response.blob())
-      .then(blob => {
-        const reader = new FileReader();
-        reader.onloadend = function () {
-          document.getElementById('cardPhoto').src = reader.result;
-        };
-        reader.readAsDataURL(blob);
-      });
-
-    document.getElementById('delegateCard').style.display = 'block';
-    document.getElementById('downloadBtn').style.display = 'inline-block';
-    window.scrollTo({ top: document.getElementById('delegateCard').offsetTop, behavior: 'smooth' });
-  })
-  .catch(error => {
-    console.error("Error:", error);
-    alert("Error: " + error.message);
-  });
-}
+  
+    if (file && file.size > 500 * 1024) {
+      photoError.textContent = "Image size should not exceed 500KB.";
+      photoError.style.display = 'block';
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("designation", designation);
+    formData.append("unit", unit);
+    formData.append("phone", phone);
+    if (file) {
+      formData.append("photo", file, file.name);
+    }
+  
+    fetch("https://mdshahilak.pythonanywhere.com/api/main/students/", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(err => { throw new Error(JSON.stringify(err)); });
+      }
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById('cardName').textContent = data.name;
+      document.getElementById('cardPhone').textContent = "Mobile: " + data.phone;
+      document.getElementById('cardUnit').textContent = data.unit;
+  
+      fetch(data.photo)
+        .then(response => response.blob())
+        .then(blob => {
+          const reader = new FileReader();
+          reader.onloadend = function () {
+            document.getElementById('cardPhoto').src = reader.result;
+          };
+          reader.readAsDataURL(blob);
+        });
+  
+      document.getElementById('delegateCard').style.display = 'block';
+      document.getElementById('downloadBtn').style.display = 'inline-block';
+      window.scrollTo({ top: document.getElementById('delegateCard').offsetTop, behavior: 'smooth' });
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Error: " + error.message);
+    });
+  }
+  
 
 function downloadDelegateCard() {
   html2canvas(document.querySelector(".delegate-card"), {
