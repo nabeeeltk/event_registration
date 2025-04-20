@@ -11,7 +11,7 @@ body {
 .landing {
 	width: 100%;
 	height: 100vh;
-	background-image: url("https://i.postimg.cc/bNKV6kp0/msf.png");
+	background-image: url("https://i.postimg.cc/W18djKJ3/page-1-copy.jpg");
 	background-size: cover;
 	background-position: center;
 	position: relative;
@@ -118,7 +118,7 @@ button:hover {
 	height: 100vh;
 	/* background-image: url("https://i.postimg.cc/sg4QfdyZ/delegate-copy-1.jpg"); */
 	background-image: url("./assets/delegate\ copy_batcheditor_fotor\ copy.jpg");
-	background-size: cover;
+	background-size: cover;      
 	background-repeat: no-repeat;
 	display: none;
 	margin: auto;
