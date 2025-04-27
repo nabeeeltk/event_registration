@@ -101,7 +101,12 @@ function downloadDelegateCard() {
   }).then(canvas => {
     const link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
-    link.download = "Delegate_Card.png";
+    link.download =  "Delegate_Card.png";
     link.click();
   });
+  document.getElementById('delegatePopup').style.display = 'flex';
+  function closePopup() {
+    document.getElementById('delegatePopup').style.display = 'none';
+  }
+  
 }
