@@ -42,7 +42,7 @@ function registerEvent () {
     return;
   }
 
-  if ( file && file.size > 500 * 1024 ) {
+  if ( file && file.size > 1024 * 1024 ) {
     photoError.textContent = "Image size should not exceed 500KB.";
     photoError.style.display = 'block';
     return;
