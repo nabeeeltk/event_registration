@@ -9,21 +9,19 @@ body {
 /* Landing Section */
 
 .landing {
-  width: 100%;
-  height: 100vh;
-  background-image: url('https://i.postimg.cc/bNKV6kp0/msf.png');
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  color: white;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  padding-bottom: 50px; /* distance from bottom */
-  
-
+	width: 100%;
+	height: 100vh;
+	background-image: url("https://i.postimg.cc/bNKV6kp0/msf.png");
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	color: white;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	padding-bottom: 50px; /* distance from bottom */
 }
 
 .overlay {
@@ -118,9 +116,8 @@ button:hover {
 	position: relative;
 	width: 600px;
 	height: 100vh;
-	/* background-image: url("https://i.postimg.cc/sg4QfdyZ/delegate-copy-1.jpg"); */
-	background-image: url("./assets/delegate\ copy_batcheditor_fotor\ copy.jpg");
-	background-size: cover;      
+	background-image: url("https://i.postimg.cc/sg4QfdyZ/delegate-copy-1.jpg");
+	background-size: cover;
 	background-repeat: no-repeat;
 	display: none;
 	margin: auto;
@@ -131,7 +128,6 @@ button:hover {
 	height: 100%;
 	position: relative;
 }
-
 .photo {
 	width: 150px;
 	height: 180px;
@@ -141,6 +137,17 @@ button:hover {
 	overflow: hidden;
 	border-radius: 5px;
 }
+/* .photo {
+	width: 150px;
+	height: 180px;
+	position: absolute;
+	top: 400px;
+	left: 100px;
+	background-color: #ccc;
+	overflow: hidden;
+	border-radius: 5px;
+	padding: 10px;
+} */
 
 .photo img {
 	width: 100%;
@@ -152,13 +159,11 @@ button:hover {
 	position: absolute;
 	bottom: 0px;
 	left: 110px;
-	text-align: start;
+	text-align: center;
 	color: black;
+	/* background-color: #ccc; */
 	border-radius: 15px;
 	padding: 5px;
-}
-.info p {
-	margin: 0;
 }
 
 .download-btn {
@@ -171,83 +176,11 @@ button:hover {
 	border-radius: 5px;
 	cursor: pointer;
 }
-
-
-/* Styles for medium screens */
-@media screen and (min-width: 641px) and (max-width: 1024px) {
-	.landing h1 {
-		font-size: 24px;
-		padding: 0 10px;
-	}
-
-	.landing button {
-		font-size: 14px;
-		padding: 10px 16px;
-	}
-
-	.overlay {
-		padding: 30px 20px;
-	}
-
-	#registration {
-		padding: 30px 15px;
-		align-items: flex-start;
-	}
-
-	.container {
-		padding: 25px 20px;
-		width: 100%;
-		max-width: 100%;
-		box-shadow: none;
-		border-radius: 10px;
-	}
-
-	label {
-		font-size: 14px;
-	}
-
-	input,
-	select {
-		padding: 10px;
-		font-size: 14px;
-	}
-
-	button {
-		padding: 12px;
-		font-size: 16px;
-	}
-
-	.delegate-card {
-		width: 100%;
-		/* height: auto; */
-		background-size: contain;
-		background-position: center;
-	}
-	.photo {
-		top: 48%;
-		left: 34%;
-		width: 150px;
-		height: 180px;
-
-		border-radius: 5px;
-		transform: translateX(-50%);
-		overflow: hidden;
-	}
-
-	.info {
-		bottom: 20%;
-		left: 20%;
-		text-align: start;
-		color: black;
-		padding: 5px;
-		font-size: 30px;
-
-	}
+.info p {
+	margin: 0;
 }
-
 /* Tablet View (641px–1024px) */
-/* Styles for small screens */
-@media screen and (min-width: 401px) and (max-width: 640px) {
+@media screen and (max-width: 640px) {
 	.landing h1 {
 		font-size: 24px;
 		padding: 0 10px;
@@ -298,107 +231,45 @@ button:hover {
 	}
 
 	.photo {
-		top: 48%;
-		left: 34%;
-		width: 125px;
-		height: 150px;
-
-		border-radius: 5px;
+		/* position: absolute; */
+		top: 400px;
+		left: 50%;
 		transform: translateX(-50%);
+		width: 100px;
+		height: 120px;
+		border-radius: 5px;
 		overflow: hidden;
 	}
 
+	.photo img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
 	.info {
-		bottom: 26%;
-		left: 20%;
-		text-align: start;
+		position: absolute;
+		top: 540px;
+		width: 100%;
+		text-align: center;
 		color: black;
-		padding: 5px;
-	}
-
-	.download-btn {
 		font-size: 14px;
-		padding: 8px 12px; 
-		margin-top: 10px;
-	}
-}
-
-/* Mobile View (≤640px) */
-/* Styles for very small screens */
-@media screen and (max-width: 400px) {
-	.landing h1 {
-		font-size: 24px;
-		padding: 0 10px;
+		line-height: 1.3;
 	}
 
-	.landing button {
-		font-size: 14px;
-		padding: 10px 16px;
-	}
-
-	.overlay {
-		padding: 30px 20px;
-	}
-
-	#registration {
-		padding: 30px 15px;
-		align-items: flex-start;
-	}
-
-	.container {
-		padding: 25px 20px;
-		width: 100%;
-		max-width: 100%;
-		box-shadow: none;
-		border-radius: 10px;
-	}
-
-	label {
-		font-size: 14px;
-	}
-
-	input,
-	select {
-		padding: 10px;
-		font-size: 14px;
-	}
-
-	button {
-		padding: 12px;
-		font-size: 16px;
-	}
-
-	.delegate-card {
-		width: 100%;
-		/* height: auto; */
-		background-size: contain;
-		background-position: center;
-	}
-
-	.photo {
-		top: 48%;
-		left: 20%;
-		width: 25%;
-		height: 15%;
-		/* width: 80px;
-		height: 110px; */
-	}
-
-	.info {
-		bottom: 28%;
-		left: 15%;
-		font-size: 10px;
-		width: 70%;
+	.info p {
+        margin: 0;
 	}
 
 	.download-btn {
 		font-size: 14px;
 		padding: 8px 12px;
+		margin-top: 10px;
 	}
 }
 
 /* Mobile View (≤640px) */
-/* @media screen and (max-width: 640px) {
+@media screen and (max-width: 640px) {
 	.landing h1 {
 		font-size: 24px;
 		padding: 0 10px;
@@ -441,28 +312,34 @@ button:hover {
 		font-size: 16px;
 	}
 
-	 .delegate-card {
+	.delegate-card {
 		width: 100%;
-		//height: auto;
+		/* height: auto; */
 		background-size: contain;
 		background-position: center;
 	}
 
 	.photo {
-		top: 45%;
-		left: 20%;
-		width: 25%;
-		height: 25%;
-		top: 50%;
-		left: 20%;
+		/* top: 60%;
+		left: 15%;
 		width: 100px;
-		height: 130px;
-		width: 150px;
-		height: 180px;
-		top: 400px;
-		left: 100px;
-	}
+		height: 100px; */
 
+        /* top: 45%;
+		left: 25%;
+		width: 25%;
+		height: 25%; */
+	}
+	.photo {
+		top: 310px;
+		left: 34%;
+		width: 125px;
+		height: 150px;
+		
+		border-radius: 5px;
+		transform: translateX(-50%);
+		overflow: hidden;
+	}
 	.info {
 		bottom: 30px;
 		left: 15%;
@@ -470,8 +347,8 @@ button:hover {
 		width: 70%;
 	}
 
-  .download-btn {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
+	.download-btn {
+		font-size: 14px;
+		padding: 8px 12px;
+	}
 }

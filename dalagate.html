@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delegate Card</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="delegate-card" id="delegateCard">
+    <div class="card-info">
+      <div class="photo">
+        <img id="cardPhoto" src="" alt="User Photo">
+      </div>
+      <div class="info">
+        <p id="cardName">Name</p>
+        <p id="cardPhone">Phone</p>
+        <p id="cardUnit">Unit</p>
+      </div>
+    </div>
+  </div>
+
+  <button id="downloadBtn" class="download-btn" onclick="downloadDelegateCard()">Download Delegate Card</button>
+
+  <script>
+    // Load data from localStorage
+    const data = JSON.parse(localStorage.getItem("userData"));
+    if (data) {
+      document.getElementById("cardName").textContent = data.name;
+      document.getElementById("cardPhone").textContent = data.phone;
+      document.getElementById("cardUnit").textContent = data.unit;
+      document.getElementById("cardPhoto").src = data.photo;
+    }
+
+    // Download function
+    function downloadDelegateCard() {
+      html2canvas(document.getElementById("delegateCard")).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "delegate-card.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>
